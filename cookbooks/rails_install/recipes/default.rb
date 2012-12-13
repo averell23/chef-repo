@@ -43,13 +43,20 @@ application node.rails_install.app_name do
   group "root"
 
   repository node.rails_install.repository
+  revision "master"
+
+  migrate true
 
   rails do
-    database do
-      # database node.rails_install.app_name
-      username "root"
-      # password node.rails_install.db_pass
-    end
+    gems ['bundler']
+    bundler true
+    database(
+      :adapter => 'mysql2',
+      :host => 'localhost',
+      :database => node.rails_install.app_name, 
+      :password => node.rails_install.db_pass,
+      :username => 'rails'
+    )
   end
 
   unicorn do
