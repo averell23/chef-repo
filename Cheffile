@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+# Other cookbooks
+# https://github.com/joevandyk/chef-cookbooks
+# https://github.com/37signals/37s_cookbooks
+# https://github.com/cookbooks
+# https://github.com/engineyard/ey-cloud-recipes
+
+cookbook "database"
+cookbook "mysql"
+cookbook "application_ruby"
