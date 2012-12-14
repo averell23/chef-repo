@@ -1,0 +1,3 @@
+# Ruby From Source cookbook
+cookbook 'ruby_from_source', :git => 'git://github.com/better-cooking/ruby_from_source.git'
+cookbook 'source_package', :git => 'git://github.com/averell23/source_package.git'

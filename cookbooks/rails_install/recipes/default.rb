@@ -18,24 +18,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-include_recipe 'mysql'
+# include_recipe 'mysql'
+include_recipe "ruby_from_source"
 include_recipe 'build-essential'
 
-gem_package 'mysql'
+package 'sqlite3'
+package 'libsqlite3-dev'
 
-mysql_database node.rails_install.app_name do
-  connection({:host => "localhost", :username => 'root', :password => node['mysql']['server_root_password']})
-  action :create
-end
-
-mysql_database_user 'rails' do
-  connection({:host => "localhost", :username => 'root', :password => node['mysql']['server_root_password']})
-  password node.rails_install.db_pass
-  database_name node.rails_install.app_name
-  host '%'
-  privileges [:all]
-  action :grant
-end
+# mysql_database node.rails_install.app_name do
+#   connection({:host => "localhost", :username => 'root', :password => node['mysql']['server_root_password']})
+#   action :create
+# end
+#
+# mysql_database_user 'rails' do
+#   connection({:host => "localhost", :username => 'root', :password => node['mysql']['server_root_password']})
+#   password node.rails_install.db_pass
+#   database_name node.rails_install.app_name
+#   host '%'
+#   privileges [:all]
+#   action :grant
+# end
 
 application node.rails_install.app_name do
   path "/var/apps/#{node.rails_install.app_name}"
@@ -48,12 +50,12 @@ application node.rails_install.app_name do
   migrate true
 
   rails do
-    gems ['bundler']
+    bundle_command '/opt/local/bin/bundle'
     bundler true
     database(
       :adapter => 'mysql2',
       :host => 'localhost',
-      :database => node.rails_install.app_name, 
+      :database => node.rails_install.app_name,
       :password => node.rails_install.db_pass,
       :username => 'rails'
     )
