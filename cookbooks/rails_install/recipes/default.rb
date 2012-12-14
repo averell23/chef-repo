@@ -53,11 +53,10 @@ application node.rails_install.app_name do
     bundle_command '/opt/local/bin/bundle'
     bundler true
     database(
-      :adapter => 'mysql2',
-      :host => 'localhost',
-      :database => node.rails_install.app_name,
-      :password => node.rails_install.db_pass,
-      :username => 'rails'
+      :adapter => 'sqlite3',
+      :database => 'db/production.sqlite3',
+      :pool => 5,
+      :timeout => 5000
     )
   end
 
