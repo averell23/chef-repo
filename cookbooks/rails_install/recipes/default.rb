@@ -24,8 +24,12 @@
 
 include_recipe "passenger_apache2::mod_rails"
 
+# Include some useful packages
 package 'sqlite3'
 package 'libsqlite3-dev'
+package 'imagemagick'
+package 'curl'
+package 'telnet'
 
 # mysql_database node.rails_install.app_name do
 #   connection({:host => "localhost", :username => 'root', :password => node['mysql']['server_root_password']})
@@ -41,6 +45,15 @@ package 'libsqlite3-dev'
 #   action :grant
 # end
 
+%w(database uploads).each do |shared_dir|
+  directory "/var/apps/#{node.rails_install.app_name}/shared/#{shared_dir}" do
+    recursive true
+    owner node.apache.user
+    group node.apache.group
+    mode 0770
+  end
+end
+
 application node.rails_install.app_name do
   path "/var/apps/#{node.rails_install.app_name}"
   owner node.apache.user
@@ -48,18 +61,21 @@ application node.rails_install.app_name do
 
   repository node.rails_install.repository
   revision "master"
+  create_dirs_before_symlink ['public', 'config', 'tmp']
+  symlink_before_migrate "database" => "database"
+  symlinks "uploads" => "public/uploads"
 
   migrate true
 
   rails do
-    # bundle_command '/opt/local/bin/bundle'
     bundler true
     database(
       :adapter => 'sqlite3',
-      :database => 'db/production.sqlite3',
+      :database => 'database/production.sqlite3',
       :pool => 5,
       :timeout => 5000
     )
+    restart_command "touch /var/apps/#{node.rails_install.app_name}/curent/tmp/restart.txt"
   end
 
 end
@@ -68,6 +84,6 @@ web_app node.rails_install.app_name do
   docroot "/var/apps/#{node.rails_install.app_name}/current/public"
   cookbook "passenger_apache2"
   server_name node.rails_install.server_name
-  # server_aliases [ "something" ]
+  server_aliases [ ]
   rails_env "production"
 end

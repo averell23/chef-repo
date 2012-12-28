@@ -10,6 +10,7 @@ site 'http://community.opscode.com/api/v1'
 # https://github.com/engineyard/ey-cloud-recipes
 
 cookbook "database"
+cookbook "git"
 # cookbook "mysql"
 cookbook "application_ruby"
 cookbook 'ruby_from_source', :git => 'git://github.com/better-cooking/ruby_from_source.git'
