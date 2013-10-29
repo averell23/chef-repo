@@ -1,4 +1,0 @@
-cookbook "rails_install" do
-  configuration "default"
-  run_list_extras []
-end
