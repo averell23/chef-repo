@@ -26,11 +26,19 @@ SITE
     postgresql (2.0.2)
       openssl (>= 0.0.0)
     runit (0.16.0)
+    squid (0.2.10)
     unicorn (1.1.0)
     xfs (1.0.0)
+
+PATH
+  remote: site-cookbooks/hetzner_one
+  specs:
+    hetzner_one (0.1.0)
 
 DEPENDENCIES
   application_ruby (>= 0)
   database (>= 0)
+  hetzner_one (>= 0)
   mysql (>= 0)
+  squid (>= 0)
 

@@ -12,3 +12,6 @@ site 'http://community.opscode.com/api/v1'
 cookbook "database"
 cookbook "mysql"
 cookbook "application_ruby"
+cookbook "squid"
+
+cookbook 'hetzner_one', path: 'site-cookbooks/hetzner_one'
