@@ -1,3 +1,4 @@
 .rake_test_cache
 tmp/
+/cookbooks/
 *.pem
