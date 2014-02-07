@@ -41,45 +41,22 @@ SITE
     postgresql (2.1.0)
       openssl (>= 0.0.0)
     runit (0.16.0)
+    squid (0.2.10)
     unicorn (1.1.0)
     windows (1.6.0)
       chef_handler (>= 0.0.0)
     xfs (1.0.0)
     yum (2.0.6)
 
-GIT
-  remote: git://github.com/averell23/rails_install.git
-  ref: master
-  sha: 610bc84d05c058ae0ba2525e6bdbe7e75bab1b47
+PATH
+  remote: site-cookbooks/hetzner_one
   specs:
-    rails_install (0.1.0)
-      application_nginx (>= 0.0.0)
-      application_ruby (>= 0.0.0)
-      build-essential (>= 0.0.0)
-      database (>= 0.0.0)
-      passenger_apache2 (>= 0.0.0)
-      ruby_from_source (>= 0.0.0)
-
-GIT
-  remote: git://github.com/averell23/source_package.git
-  ref: master
-  sha: c38d53a9f412a3b77ff39bce7b39450245ead074
-  specs:
-    source_package (0.1.0)
-
-GIT
-  remote: git://github.com/better-cooking/ruby_from_source.git
-  ref: master
-  sha: 5bfcfe7c798c08990fcac3451f437ff25342f501
-  specs:
-    ruby_from_source (0.1.0)
-      source_package (>= 0.0.0)
+    hetzner_one (0.1.0)
 
 DEPENDENCIES
   application_ruby (>= 0)
   database (>= 0)
-  git (>= 0)
-  rails_install (>= 0)
-  ruby_from_source (>= 0)
-  source_package (>= 0)
+  hetzner_one (>= 0)
+  mysql (>= 0)
+  squid (>= 0)
 

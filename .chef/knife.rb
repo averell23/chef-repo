@@ -9,6 +9,3 @@ chef_server_url          "https://api.opscode.com/organizations/none23"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
-cookbook_copyright "Daniel Hahn"
-cookbook_email     "averell@newgods.org"
-cookbook_license   "gplv3"

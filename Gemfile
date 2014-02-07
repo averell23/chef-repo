@@ -1,10 +1,8 @@
-source "http://rubygems.org"
-
+source "https://rubygems.org"
 
 group :default do
-  gem 'chef', ">= 10.0.0"
+  gem 'chef', "~> 11.6.0"
+  gem "moneta", "~> 0.6.0"
   gem 'rake'
-  gem 'librarian'
-  gem 'test-kitchen'
-  # gem 'vagrant' ## Install manually
+  gem 'librarian-chef'
 end
