@@ -1,0 +1,15 @@
+{
+  "name": "rails_server",
+  "description": "Install a rails app",
+  "override_attributes": {
+    "rails_install": {
+      "server_name": "badges.furrycreatures.net",
+      "app_name": "badgeworld",
+      "repository": "git://github.com/averell23/badgeworld.git"
+    }
+  },
+  "run_list": [
+    "recipe[git]",
+    "recipe[rails_install]"
+  ]
+}

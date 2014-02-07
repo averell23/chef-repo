@@ -1,0 +1,17 @@
+{
+  "name": "hetzner_one",
+  "override_attributes": {
+    "squid": {
+      "port": "localhost:3128",
+      "ipaddress": "localhost"
+    },
+    "rbenv": {
+      "rubies": [ "2.1.0-p0" ]
+    }
+  },
+  "run_list": [
+    "recipe[hetzner_one]",
+    "recipe[squid]",
+    "recipe[rbenv::system]"
+  ]
+}
