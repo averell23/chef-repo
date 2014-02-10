@@ -6,7 +6,23 @@
       "ipaddress": "localhost"
     },
     "rbenv": {
-      "rubies": [ "2.1.0" ]
+      "global": "2.1.0"
+    },
+    "nginx": {
+      "version": "1.5.10",
+      "passenger": {
+        "version": "4.0.37",
+        "ruby": "/usr/local/rbenv/versions/2.1.0/bin/ruby",
+        "root": "/usr/local/rbenv/versions/2.1.0/lib/ruby/gems/2.1.0/gems/passenger-4.0.37"
+      },
+      "source": {
+        "modules": [
+          "http_stub_status_module",
+          "http_ssl_module",
+          "http_gzip_static_module",
+          "passenger"
+        ]
+      }
     }
   },
   "run_list": [
@@ -14,6 +30,8 @@
     "recipe[hetzner_one]",
     "recipe[squid]",
     "recipe[ruby_build]",
-    "recipe[rbenv::system]"
+    "recipe[rbenv::system]",
+    "recipe[nginx::source]",
+    "recipe[nginx::passenger]"
   ]
 }
