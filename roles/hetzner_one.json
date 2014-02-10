@@ -6,12 +6,14 @@
       "ipaddress": "localhost"
     },
     "rbenv": {
-      "rubies": [ "2.1.0-p0" ]
+      "rubies": [ "2.1.0" ]
     }
   },
   "run_list": [
+    "recipe[apt]",
     "recipe[hetzner_one]",
     "recipe[squid]",
+    "recipe[ruby_build]",
     "recipe[rbenv::system]"
   ]
 }
