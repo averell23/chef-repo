@@ -17,6 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+swap_file '/swapfile' do
+  size      2048    # MBs
+end
+
 user "joana" do
   comment "Joana"
   home '/home/joana'
