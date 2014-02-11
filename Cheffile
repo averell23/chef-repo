@@ -10,6 +10,7 @@ site 'http://community.opscode.com/api/v1'
 # https://github.com/engineyard/ey-cloud-recipes
 
 cookbook "apt"
+cookbook "build-essential"
 cookbook "database"
 cookbook "git"
 # cookbook "mysql"
