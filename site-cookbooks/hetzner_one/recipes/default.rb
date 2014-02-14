@@ -18,7 +18,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package "openssl"
-package "libssl-dev"
+
+if platform_family?('rhel')
+  package 'libssl-devel'
+else
+  package "libssl-dev"
+end
 
 swap_file '/swapfile' do
   size      2048    # MBs
