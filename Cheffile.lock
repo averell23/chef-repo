@@ -1,70 +1,103 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.3.2)
-    application (2.0.0)
-    application_ruby (1.0.6)
-      apache2 (>= 0.0.0)
-      application (>= 0.0.0)
-      passenger_apache2 (>= 0.0.0)
-      runit (>= 0.0.0)
-      unicorn (>= 0.0.0)
+    apache2 (1.8.14)
     apt (2.3.6)
-    aws (0.100.4)
-    build-essential (1.3.0)
+    aws (1.0.0)
+    bluepill (2.3.1)
+      rsyslog (>= 0.0.0)
+    build-essential (1.4.2)
     chef_handler (1.1.4)
-    database (1.3.6)
+    database (1.6.0)
       aws (>= 0.0.0)
       mysql (>= 1.3.0)
       postgresql (>= 1.0.0)
       xfs (>= 0.0.0)
     dmg (2.1.4)
-    git (2.2.0)
+    git (2.9.0)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
-      runit (<= 0.16.2)
+      runit (>= 1.0.0)
       windows (>= 0.0.0)
-      yum (>= 0.0.0)
-    mysql (2.0.2)
-      build-essential (>= 0.0.0)
-      openssl (>= 0.0.0)
-    nginx (1.8.0)
-      apt (>= 0.0.0)
-      build-essential (>= 0.0.0)
-      ohai (>= 1.1.4)
-      runit (>= 0.0.0)
-      yum (>= 0.0.0)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    logrotate (1.5.0)
+    mysql (4.0.20)
+      build-essential (~> 1.4)
+      openssl (~> 1.1)
     ohai (1.1.12)
-    openssl (1.0.0)
-    passenger_apache2 (1.0.0)
+    openssl (1.1.0)
+    passenger_apache2 (2.1.2)
       apache2 (>= 1.0.4)
       build-essential (>= 0.0.0)
-    postgresql (2.1.0)
+    postgresql (3.3.4)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    runit (0.16.0)
+    rsyslog (1.10.2)
+    runit (1.5.8)
+      build-essential (>= 0.0.0)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
     squid (0.2.10)
-    unicorn (1.1.0)
+    unicorn (1.3.0)
     windows (1.12.8)
       chef_handler (>= 0.0.0)
-    xfs (1.0.0)
-    yum (3.0.6)
+    xfs (1.1.0)
+    yum (3.1.0)
+    yum-epel (0.3.2)
+      yum (~> 3.0)
 
 GIT
-  remote: git://github.com/fnichol/chef-rbenv.git
+  remote: https://github.com/better-cooking/application_ruby
+  ref: master
+  sha: d1bd5fc5c622639f48dd68dfeb9c60d6ffc76266
+  specs:
+    application_ruby (3.0.2)
+      apache2 (>= 0.0.0)
+      application (~> 4.0)
+      logrotate (~> 1.0)
+      passenger_apache2 (>= 0.0.0)
+      runit (~> 1.0)
+      unicorn (>= 0.0.0)
+
+GIT
+  remote: https://github.com/better-cooking/nginx
+  ref: master
+  sha: a460627d7a80f6d3031596a4ab5a71e595555b0e
+  specs:
+    nginx (2.2.3)
+      apt (~> 2.2)
+      bluepill (~> 2.3)
+      build-essential (~> 1.4)
+      ohai (~> 1.1)
+      runit (~> 1.2)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rbenv
   ref: v0.7.2
   sha: f2b53292e810dd2b43f6121f9958f5f29979dcb1
   specs:
     rbenv (0.7.2)
 
 GIT
-  remote: git://github.com/fnichol/chef-ruby_build.git
+  remote: https://github.com/fnichol/chef-ruby_build
   ref: v0.8.0
   sha: ed2d3841784ecf60c1de808946307b588efe644f
   specs:
     ruby_build (0.8.0)
 
 GIT
-  remote: git://github.com/sethvargo-cookbooks/swap.git
+  remote: https://github.com/poise/application
+  ref: master
+  sha: 39907f69b10a10082d3e69e99145b5dad7f2944d
+  specs:
+    application (4.1.5)
+
+GIT
+  remote: https://github.com/sethvargo-cookbooks/swap
   ref: v0.3.6
   sha: 07c8e3aec11473deed6ecaf15922c2c164a8cc27
   specs:
@@ -74,8 +107,12 @@ PATH
   remote: site-cookbooks/hetzner_one
   specs:
     hetzner_one (0.1.0)
+      application (>= 0.0.0)
+      application_ruby (>= 0.0.0)
+      swap (>= 0.0.0)
 
 DEPENDENCIES
+  application (>= 0)
   application_ruby (>= 0)
   apt (>= 0)
   apt (>= 0)
@@ -85,8 +122,6 @@ DEPENDENCIES
   hetzner_one (>= 0)
   nginx (>= 0)
   rbenv (>= 0)
-  rbenv (>= 0)
-  ruby_build (>= 0)
   ruby_build (>= 0)
   squid (>= 0)
   swap (>= 0)

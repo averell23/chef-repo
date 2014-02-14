@@ -14,16 +14,15 @@ cookbook "build-essential"
 cookbook "database"
 cookbook "git"
 # cookbook "mysql"
-cookbook "application_ruby"
 cookbook "squid"
 cookbook "apt"
-cookbook "nginx"
 
-cookbook 'swap', git: 'git://github.com/sethvargo-cookbooks/swap.git', ref: 'v0.3.6'
-cookbook 'rbenv', git: 'git://github.com/fnichol/chef-rbenv.git', ref: 'v0.7.2'
-cookbook 'ruby_build', git: 'git://github.com/fnichol/chef-ruby_build.git', ref: 'v0.8.0'
+cookbook "application", github: 'poise/application'
+cookbook "application_ruby", github: 'better-cooking/application_ruby'
+cookbook "nginx", github: 'better-cooking/nginx'
 
-cookbook 'ruby_build', :git => 'git://github.com/fnichol/chef-ruby_build.git', :ref => 'v0.8.0'
-cookbook 'rbenv', :git => 'git://github.com/fnichol/chef-rbenv.git', :ref => 'v0.7.2'
+cookbook 'swap', github: 'sethvargo-cookbooks/swap', ref: 'v0.3.6'
+cookbook 'rbenv', github: 'fnichol/chef-rbenv', ref: 'v0.7.2'
+cookbook 'ruby_build', github: 'fnichol/chef-ruby_build', ref: 'v0.8.0'
 
 cookbook 'hetzner_one', path: 'site-cookbooks/hetzner_one'
