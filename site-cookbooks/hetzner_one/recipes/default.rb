@@ -35,12 +35,6 @@ directory '/home/joana/.ssh' do
   mode '0700'
 end
 
-user "rails_runner" do
-  home '/home/rails_runner'
-  shell '/bin/bash'
-  supports :manage_home => true
-end
-
 file "/home/joana/.ssh/authorized_keys" do
   owner 'joana'
   mode '0600'
@@ -49,6 +43,7 @@ end
 
 connection_info =  {:host => "localhost", :username => 'root', :password => node.mysql.server_root_password }
 node.set_unless['hetzner_one']['badgeworld_pass'] = secure_password
+app_password = node['hetzner_one']['badgeworld_pass']
 
 mysql_database 'badgeworld' do
   connection connection_info
@@ -57,9 +52,35 @@ end
 
 mysql_database_user 'badgeworld' do
   connection connection_info
-  password node['hetzner_one']['badgeworld_pass']
+  password app_password
   database_name 'badgeworld'
   host 'localhost'
   privileges [:all]
   action :grant
+end
+
+directory '/var/www/.passenger' do
+  owner node.nginx.user
+  recursive true
+end
+
+application "badgeworld" do
+  path "/var/apps/badgeworld"
+  owner node.nginx.user
+
+  repository "https://github.com/averell23/badgeworld.git"
+
+  rails do
+    rbenv_version '2.1.0'
+    gems ['bundler']
+    database do
+      adapter 'mysql2'
+      database "badgeworld"
+      username "badgeworld"
+      password app_password
+    end
+  end
+
+  passenger_nginx do
+  end
 end

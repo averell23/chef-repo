@@ -51,7 +51,7 @@ SITE
 GIT
   remote: https://github.com/better-cooking/application_ruby
   ref: master
-  sha: d1bd5fc5c622639f48dd68dfeb9c60d6ffc76266
+  sha: 837d7e3d8991b092914f964978300b4a49fbf2e0
   specs:
     application_ruby (3.0.2)
       apache2 (>= 0.0.0)
@@ -104,11 +104,6 @@ GIT
     swap (0.3.5)
 
 PATH
-  remote: site-cookbooks/badgeworld
-  specs:
-    badgeworld (0.1.0)
-
-PATH
   remote: site-cookbooks/hetzner_one
   specs:
     hetzner_one (0.1.0)
@@ -123,7 +118,6 @@ DEPENDENCIES
   application_ruby (>= 0)
   apt (>= 0)
   apt (>= 0)
-  badgeworld (>= 0)
   build-essential (>= 0)
   database (>= 0)
   git (>= 0)

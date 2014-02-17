@@ -37,7 +37,6 @@
     "recipe[rbenv::system]",
     "recipe[nginx]",
     "recipe[nginx::passenger]",
-    "recipe[hetzner_one]",
-    "recipe[badgeworld]"
+    "recipe[hetzner_one]"
   ]
 }
