@@ -26,3 +26,4 @@ cookbook 'rbenv', github: 'fnichol/chef-rbenv', ref: 'v0.7.2'
 cookbook 'ruby_build', github: 'fnichol/chef-ruby_build', ref: 'v0.8.0'
 
 cookbook 'hetzner_one', path: 'site-cookbooks/hetzner_one'
+cookbook 'badgeworld', path: 'site-cookbooks/badgeworld'

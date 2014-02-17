@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+include_recipe "database::mysql"
+
 swap_file '/swapfile' do
   size      2048    # MBs
 end
@@ -45,25 +47,19 @@ file "/home/joana/.ssh/authorized_keys" do
   content Chef::DataBagItem.load('ssh_keys', 'joana')['key']
 end
 
-application "badgeworld" do
-  path "/var/apps/badgeworld"
-  owner "rails_runner"
+connection_info =  {:host => "localhost", :username => 'root', :password => node.mysql.server_root_password }
+node.set_unless['hetzner_one']['badgeworld_pass'] = secure_password
 
-  environment(
-    "PATH" => ['/usr/local/rbenv/shims', ENV['PATH']].join(':'),
-    "RBENV_VERSION" => "2.1.0"
-  )
+mysql_database 'badgeworld' do
+  connection connection_info
+  action :create
+end
 
-  repository "https://github.com/averell23/badgeworld.git"
-
-  rails do
-    gems ['rake', 'bundler']
-    database do
-      database "badgeworld"
-      username "badgeworld"
-    end
-  end
-
-  passenger_nginx do
-  end
+mysql_database_user 'badgeworld' do
+  connection connection_info
+  password node['hetzner_one']['badgeworld_pass']
+  database_name 'badgeworld'
+  host 'localhost'
+  privileges [:all]
+  action :grant
 end

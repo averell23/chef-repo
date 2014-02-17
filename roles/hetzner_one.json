@@ -1,6 +1,9 @@
 {
   "name": "hetzner_one",
   "override_attributes": {
+    "build_essential": {
+      "compiletime": true
+    },
     "squid": {
       "port": "localhost:3128",
       "ipaddress": "localhost"
@@ -28,11 +31,13 @@
   "run_list": [
     "recipe[apt]",
     "recipe[build-essential]",
+    "recipe[mysql::server]",
     "recipe[squid]",
     "recipe[ruby_build]",
     "recipe[rbenv::system]",
     "recipe[nginx]",
     "recipe[nginx::passenger]",
-    "recipe[hetzner_one]"
+    "recipe[hetzner_one]",
+    "recipe[badgeworld]"
   ]
 }
